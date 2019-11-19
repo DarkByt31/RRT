@@ -1,4 +1,4 @@
-#Rapidly Exploring Random Tree  
+# Rapidly Exploring Random Tree  
 
 An implementation of RRT* start algorithm for motion planning  
 
