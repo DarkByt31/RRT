@@ -13,5 +13,6 @@ Instruction to build and execute:
 1) Give execution permission to `build.sh`  
 2) Execute it `./build.sh` and check for errors if any  
 3) Run `./main`  
+File `point.txt` will contain all the nodes of the tree.
 
 ![Plot screenshot](https://github.com/DarkByt31/RRT/blob/master/rrt.png)
