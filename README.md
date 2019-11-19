@@ -14,3 +14,4 @@ Instruction to build and execute:
 2) Execute it `./build.sh` and check for errors if any  
 3) Run `./main`  
 
+![Plot screenshot](https://github.com/DarkByt31/RRT/blob/master/rrt.png)
