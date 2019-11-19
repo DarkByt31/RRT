@@ -1,6 +1,6 @@
 # Rapidly Exploring Random Tree  
 
-An implementation of RRT* start algorithm for motion planning  
+An implementation of RRT* start algorithm for motion planning [Wiki](https://en.wikipedia.org/wiki/Rapidly-exploring_random_tree)
 
 Requirements:  
 =============  
