@@ -45,16 +45,43 @@ bool RRT::inObstacle(Point pt){
 	return false;
 }
 
+// Returns true if two lines intersect
+bool lineIntersect(int x00, int y00, int x10, int y10, int x01, int y01, int x11, int y11){
+	double d = x11*y01 - x01*y11;
+	double s = (1/d) * ((x00 - x10)*y01 - (y00 - y10)*x01);
+	double t = -(1/d) * (-(x00 - x10)*y11 + (y00 - y10)*x11);
+	if((s >= 0 && s <= 1) && (t >= 0 && t <= 1))	return true;
+	return false;
+}
+
+// Returns true if the line segment passes through obstacle
 bool RRT::lineInObstacle(Point a, Point b){
 	int x00 = a.x, y00 = a.y, x10 = b.x-x00, y10 = b.y-y00;
 	for(int i=0; i<obstacles.size(); i++){
+		// lower side parallel to x axis
 		int x01 = obstacles[i].first.x, y01 = obstacles[i].first.y;
 		int x11 = obstacles[i].second.x - x01;
 		int y11 = obstacles[i].first.y - y01;
-		double d = x11*y01 - x01*y11;
-		double s = (1/d) * ((x00 - x10)*y01 - (y00 - y10)*x01);
-		double t = -(1/d) * (-(x00 - x10)*y11 + (y00 - y10)*x11);
-		if((s >= 0 && s <= 1) && (t >= 0 && t <= 1))	return true;
+		bool intersect = lineIntersect(x00, y00, x10, y10, x01, y01, x11, y11);
+		if(intersect)	return true;
+
+		// right side parallel to y axis
+		x01 = obstacles[i].second.x, y01 = obstacles[i].first.y;
+		x11 = obstacles[i].second.x - x01, y11 = obstacles[i].second.y - y01;
+		intersect = lineIntersect(x00, y00, x10, y10, x01, y01, x11, y11);
+		if(intersect)	return true;
+
+		// upper side parallel to x axis
+		x01 = obstacles[i].first.x, y01 = obstacles[i].second.y;
+		x11 = obstacles[i].second.x - x01, y11 = obstacles[i].second.y - y01;
+		intersect = lineIntersect(x00, y00, x10, y10, x01, y01, x11, y11);
+		if(intersect)	return true;
+
+		// left side parallel to y axis
+		x01 = obstacles[i].first.x, y01 = obstacles[i].first.y;
+		x11 = obstacles[i].first.x - x01, y11 = obstacles[i].second.y - y01;
+		intersect = lineIntersect(x00, y00, x10, y10, x01, y01, x11, y11);
+		if(intersect)	return true;
 	}
 	return false;
 }
