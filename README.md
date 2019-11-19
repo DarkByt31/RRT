@@ -4,7 +4,7 @@ An implementation of RRT* start algorithm for motion planning
 
 Requirements:  
 =============  
-Latest version of `gnuplot` (version>=5.0) 
+Latest version of `gnuplot` (version>=5.0)  
 Install it using `sudo apt-get install gnuplot5`  
 Plotting can be removed by commenting `line 113` in `main.cpp`.  
 
